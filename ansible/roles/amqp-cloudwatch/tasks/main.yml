@@ -1,0 +1,31 @@
+
+
+- name: Synchronize aws credentials
+  synchronize: src=roles/amqp-cloudwatch/files/.aws dest=/root/ 
+
+
+- name: Synchronize cloudwatch scripts for rabbitmq
+  synchronize: src=roles/amqp-cloudwatch/files/rabbitmq-cloudwatch/ dest=/root/ 
+
+
+
+- name: Install system packages (apt version)
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - python-pip
+    - cloud-utils
+
+
+- name: Install boto Python library
+  pip: name=boto state=latest
+
+
+- name: Install AWS CLI
+  pip: name=awscli state=latest
+
+
+
+#cron for rabbit cloudwatch TODO: extract hostname and node name
+- name: RabbitMQ Cloudwatch Cron
+  cron: name="rabbitmq-cloudwatch" job="./getRabbitMQNodeInfo.sh -r "http://{{inventory_hostname}}:15672/api" -u {{rabbit_api_user}} -p {{rabbit_api_pass}} -n rabbit@{{inventory_hostname_short}}" state=present
+

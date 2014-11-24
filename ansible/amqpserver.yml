@@ -1,0 +1,7 @@
+---
+- hosts: amqp-servers
+  remote_user: ubuntu
+  sudo: yes
+  roles:
+     - mayeu-rabbitmq-master
+     - amqp-cloudwatch
