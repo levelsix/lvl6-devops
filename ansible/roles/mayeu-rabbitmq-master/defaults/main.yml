@@ -55,3 +55,5 @@ rabbitmq_conf_ssl_options_keyfile             : "/etc/rabbitmq/ssl/{{ rabbitmq_s
 rabbitmq_conf_ssl_options_fail_if_no_peer_cert: "false"
 
 rabbitmq_env: false
+
+rabbit_file_descriptors: 750000

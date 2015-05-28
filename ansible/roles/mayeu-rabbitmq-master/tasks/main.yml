@@ -1,5 +1,6 @@
 ---
 - include: hostname.yml
+- include: file-limits.yml
 - include: install/main.yml
 - include: configuration.yml
 - include: plugins.yml

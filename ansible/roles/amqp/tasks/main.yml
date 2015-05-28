@@ -1,10 +1,5 @@
 
 
-#Copy SSL Certs 
-
-- name: Synchronize rabbit certs
-  synchronize: src=rabbitmq dest=/etc/rabbitmq owner=root group=root mode=0755 recursive=yes
-
 - name: Synchronize aws credentials
   synchronize: src=.aws dest=/root/ owner=root group=root mode=0755 recursive=yes
 
@@ -18,7 +13,7 @@
   apt: pkg={{ item }} state=latest
   with_items:
     - python-pip
-    - rabbitmq-server
+#    - rabbitmq-server
     - cloud-utils
 
 
@@ -35,3 +30,9 @@
 - name: RabbitMQ Cloudwatch Cron
   cron: name="rabbitmq-cloudwatch" job="./getRabbitMQNodeInfo.sh -r "http://{{inventory_hostname}}:15672/api" -u {{rabbit_api_user}} -p {{rabbit_api_pass}} -n rabbit@{{inventory_hostname_short}}" state=present
 
+
+#setup script for rabbit
+- template: src=setupRabbitMQ.sh dest=/home/ubuntu/setupRabbitMQ.sh owner=ubuntu group=ubuntu mode=0700
+
+
+- shell: /home/ubuntu/setupRabbitMQ.sh

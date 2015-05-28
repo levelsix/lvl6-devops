@@ -1,0 +1,27 @@
+# VHOST
+rabbitmq_vhost_definitions: 
+  - name:    prodmobsters
+rabbitmq_users_definitions:
+  - vhost:    prodmobsters
+    user:     lvl6client
+    password: 'LvL6Pr0dCl!3nT'
+  - vhost:    prodmobsters
+    user:     lvl6server
+    password: 'Lvl6Pr0dS3rv3R'
+  - vhost:    prodmobsters
+    user:     lvl6api
+    password: 'Lvl6Pr0d@pi'
+    tags:                # Optional, user tags
+    - monitoring
+    - management
+  - vhost:    prodmobsters
+    user:     kelly
+    password: 'robashen123'
+    tags:                # Optional, user tags
+    - monitoring
+    - management
+
+rabbit_file_descriptors: 750000
+
+rabbit_api_user: lvl6api
+rabbit_api_pass: 'Lvl6Pr0d@pi'

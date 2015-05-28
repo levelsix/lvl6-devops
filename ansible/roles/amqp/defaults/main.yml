@@ -1,2 +1,8 @@
-rabbit_api_user=
-rabbit_api_pass=
+rabbit_api_user: lvl6api
+rabbit_api_pass: devapi
+rabbit_client_user: lvl6client
+rabbit_client_pass: devclient
+rabbit_server_user: lvl6server
+rabbit_server_pass: devserver
+rabbit_vhost: devmobsters
+
