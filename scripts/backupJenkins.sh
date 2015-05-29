@@ -13,7 +13,7 @@ s3Bucket=lvl6-build-backups
 
 echo Removing old backups
 
-find "$backupDir/*.7z" -type f -mtime +60 -exec rm {} \;
+find $backupDir -iname "*.7z" -type f -mtime +60 -exec rm {} \;
 
 
 echo Syncing to S3
