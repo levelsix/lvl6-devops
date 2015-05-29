@@ -26,7 +26,20 @@ rabbitmq_users_definitions:
     tags:                # Optionnal, user tags
     - monitoring
     - management
-
+  - vhost:    devmobsters
+    user:     kelly
+    password: 'robashen123'
+    tags:                # Optional, user tags
+    - monitoring
+    - management
+    - administrator
+  - vhost:    devmobsters
+    user:     lvl6admin
+    password: 'l3v3ls1x'
+    tags:                # Optional, user tags
+    - monitoring
+    - management
+    - administrator
 
 
 # Avoid setting up federation

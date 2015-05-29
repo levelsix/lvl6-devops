@@ -20,6 +20,15 @@ rabbitmq_users_definitions:
     tags:                # Optional, user tags
     - monitoring
     - management
+    - administrator
+  - vhost:    prodmobsters
+    user:     lvl6admin
+    password: 'l3v3ls1x'
+    tags:                # Optional, user tags
+    - monitoring
+    - management
+    - administrator
+
 
 rabbit_file_descriptors: 750000
 
