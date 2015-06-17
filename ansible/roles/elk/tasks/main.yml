@@ -33,6 +33,9 @@
 - name: Set file limits
   include: file-limits.yml
 
+- name: Install ES Curator
+  include: elasticsearch-curator.yml
+
 - name: Install Logstash
   include: logstash.yml
 

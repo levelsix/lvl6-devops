@@ -38,6 +38,9 @@
   sudo: yes
   notify: Restart supervisor
 
+- name: remove old password file
+  file: path=/etc/nginx/conf.d/.kibana.htpasswd state=absent
+
 - name: Generate kibana htpassword
   shell:
     echo "{{ elk_kibana.user }}:$(openssl passwd -crypt {{ elk_kibana.password }}):kibana" |tee .kibana.htpasswd

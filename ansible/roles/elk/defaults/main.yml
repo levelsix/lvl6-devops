@@ -41,3 +41,6 @@ elasticsearch_heap_size: 22g
 ES_AccessKeyID: AKIAIVXX3AQKXFAASOXA
 ES_SecretAccessKey: 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
 
+
+curator_max_keep_days: 14
+curator_close_after_days: 7
