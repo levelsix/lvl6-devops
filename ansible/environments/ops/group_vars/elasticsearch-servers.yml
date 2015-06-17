@@ -1,0 +1,14 @@
+elasticsearch_cluster_name: "mobsters"
+
+ES_AccessKeyID: AKIAIVXX3AQKXFAASOXA
+ES_SecretAccessKey: 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
+
+
+elk_kibana:
+  version: 4.0.2-linux-x64
+  path: /opt/kibana
+  port: 5601
+  user: lvl6user # optional; if unset, kibana does not require authentication
+  password: robashen123 # optional; if unset, kibana does not require authentication
+  allowed_addresses:
+    - 127.0.0.1

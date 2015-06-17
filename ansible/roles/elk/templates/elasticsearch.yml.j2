@@ -1,0 +1,51 @@
+######################### ElasticSearch Configuration  ########################
+
+# This file is managed by Ansible, do not be surpised when your changes are overwritten!
+#
+# Please see the source file for context and more information:
+# https://github.com/elasticsearch/elasticsearch/blob/master/config/elasticsearch.yml
+#
+
+############################## Scripting ######################################
+
+script.groovy.sandbox.enabled: true
+
+############################## Network And HTTP ###############################
+
+
+cluster.name: {{elasticsearch_cluster_name}}
+node.name: {{inventory_hostname}}
+node.master: true
+node.data: true
+
+
+plugin.mandatory: cloud-aws
+
+
+cloud.aws.access_key: {{ES_AccessKeyID}}
+cloud.aws.secret_key: {{ES_SecretAccessKey}}
+
+#discovery
+#discovery.type: zen
+#discovery.zen.minimum_master_nodes: 3
+#discovery.zen.ping.multicast.enabled: false
+#discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch-servers'] %}"{{ host }}[9300-9400]",{% endfor %}]
+#discovery.zen.ping.fd.ping_interval: 60s
+#discovery.zen.ping.fd.ping_timeout: 60s
+#discovery.zen.ping.fd.ping_retries: 10
+
+discovery.type: ec2
+discovery.zen.ping.multicast.enabled: false
+discovery.ec2.groups: sg-d692b7b3
+cloud:
+  aws:
+    region: us-west-2
+
+
+{% if elk_elasticsearch.http.port is defined %}
+http.port: {{ elk_elasticsearch.http.port }}
+{% endif %}
+
+path:
+  logs: /var/log/elasticsearch
+  data: /mnt/elk

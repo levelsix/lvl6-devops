@@ -1,0 +1,38 @@
+- name: Update /etc/security/limits.conf file (1/2)
+  sudo: yes
+  lineinfile: dest=/etc/security/limits.conf 
+              insertbefore='# End of file'
+              line='*             soft    nofile          {{elasticsearch_file_descriptors}}'
+              state=present
+
+- name: Update /etc/security/limits.conf file (2/2)
+  sudo: yes
+  lineinfile: dest=/etc/security/limits.conf 
+              insertbefore='# End of file'
+              line='*             hard    nofile          {{elasticsearch_file_descriptors}}'
+              state=present
+
+- name: Update /etc/pam.d/su file  
+  sudo: yes
+  lineinfile: dest=/etc/pam.d/su 
+              regexp="^session    required   pam_limits.so" 
+              insertafter='^# session    required   pam_limits.so'
+              line="session    required   pam_limits.so"
+              state=present
+
+- name: Update /etc/default/elasticsearch open files
+  sudo: yes
+  lineinfile: dest=/etc/default/elasticsearch
+              regexp="^#MAX_OPEN_FILES" 
+              line="MAX_OPEN_FILES={{elasticsearch_file_descriptors}}"
+              state=present
+
+
+- name: Update /etc/default/elasticsearch max memory
+  sudo: yes
+  lineinfile: dest=/etc/default/elasticsearch
+              regexp="^ES_HEAP_SIZE" 
+              line="ES_HEAP_SIZE={{elasticsearch_heap_size}}"
+              state=present
+
+
