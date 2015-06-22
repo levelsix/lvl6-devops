@@ -13,7 +13,8 @@
     - 'curator_clean'
     - 'curator_close'
     - 'curator_delete'
- 
+  sudo: yes 
+
 - name: install curator crontab
   cron: name='curator_delete'
         minute='0' hour='10'
@@ -22,6 +23,8 @@
         cron_file='curator_delete'
         state='present'
   tags: [cron]
+  sudo: yes
+
  
 - name: install curator crontab
   cron: name='curator_close'
@@ -31,4 +34,4 @@
         cron_file='curator_close'
         state='present'
   tags: [cron]
-
+  sudo: yes
